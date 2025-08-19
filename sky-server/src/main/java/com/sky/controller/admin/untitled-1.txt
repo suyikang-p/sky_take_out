@@ -1,0 +1,14 @@
+server {
+    listen 8984;
+    
+    location / {
+        root /path/to/frontend;
+        index index.html;
+    }
+    
+    location /api/ {
+        proxy_pass http://localhost:后端端口号/;  # 这里填写你当前的后端端口
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
